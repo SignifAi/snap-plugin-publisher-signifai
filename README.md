@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/SignifAi/snap-plugin-publisher-signifai.svg?style=svg)](https://circleci.com/gh/SignifAi/snap-plugin-publisher-signifai)
+
 # snap-plugin-publisher-signifai
 Publishes snap metrics/events to SignifAI metrics service.
 
