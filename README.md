@@ -1,12 +1,13 @@
 # snap-plugin-publisher-signifai
 Publishes snap metrics/events to SignifAI metrics service.
+SignifAI is a machine intelligence platform that helps TechOps teams get to answers faster by learning from their expertise, not generic algorithims. SignifAI helps TechOps deliver more uptime by intelligently prioritizing alerts, quickly identifying the root cause of an issue and correlating all the relevant log, events and metric data associated with the issue.
+
 
 1. [Getting Started](#getting-started)
   * [System Requirements](#system-requirements)
   * [Installation](#installation)
   * [Configuration and Usage](#configuration-and-usage)
 2. [Documentation](#documentation)
-  * [Examples](#examples)
   * [Roadmap](#roadmap)
 3. [Community Support](#community-support)
 4. [Contributing](#contributing)
@@ -117,9 +118,15 @@ Task-72869b36-def6-47c4-9db2-822f93bb9d1f    Running   ...
 
 ## Documentation
 
+docs.signifai.io
+
 ### Roadmap
 
+We keep working on more feature and will update the publisher as needed.
+
 ## Community Support
+
+Open an issue and we will respond.
 
 ## Contributing We love contributions!
 
@@ -130,3 +137,4 @@ Released under under the Apache 2.0 [License](LICENSE).
 
 ## Acknowledgements
 * Author: [@SignifAi](https://github.com/SignifAi/)
+* Info: www.signifai.io
