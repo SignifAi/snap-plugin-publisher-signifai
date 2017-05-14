@@ -1,0 +1,39 @@
+hash: 13fa79dc23c548d279c1bbb94762b077ed09ca31c9c5e65eade4fa678e42d3c5
+updated: 2017-03-28T17:53:23.96927358-07:00
+imports:
+- name: github.com/golang/protobuf
+  version: 888eb0692c857ec880338addf316bd662d5e630e
+  subpackages:
+  - proto
+- name: github.com/intelsdi-x/snap
+  version: c98bf6658761dc330431c118dee1a069deb90bab
+- name: github.com/intelsdi-x/snap-plugin-lib-go
+  version: 8ae21e8f72cb1740171073d496a6b7f2cec5ca73
+  subpackages:
+  - v1/plugin
+  - v1/plugin/rpc
+- name: github.com/julienschmidt/httprouter
+  version: 6f3f3919c8781ce5c0509c83fffc887a7830c938
+- name: golang.org/x/net
+  version: 154d9f9ea81208afed560f4cf27b4860c8ed1904
+  subpackages:
+  - context
+  - http2
+  - http2/hpack
+  - internal/timeseries
+  - lex/httplex
+  - trace
+- name: google.golang.org/grpc
+  version: 0032a855ba5c8a3c8e0d71c2deef354b70af1584
+  subpackages:
+  - codes
+  - credentials
+  - grpclog
+  - internal
+  - metadata
+  - naming
+  - peer
+  - transport
+- name: gopkg.in/jarcoal/httpmock.v1
+  version: abbf1543e32e3d8a74ab639e37d9b097178a6924
+testImports: []

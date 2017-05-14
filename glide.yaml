@@ -1,0 +1,8 @@
+package: github.com/SignifAi/snap-plugin-publisher-signifai
+import:
+- package: github.com/intelsdi-x/snap
+- package: github.com/intelsdi-x/snap-plugin-lib-go
+  subpackages:
+  - v1/plugin
+- package: gopkg.in/jarcoal/httpmock.v1
+

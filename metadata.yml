@@ -1,0 +1,8 @@
+name: signifai
+type: publisher
+maintainer: SignifAi
+license: Apache-2.0
+description: "Publishes Metrics, Deployments, and Incident Events to SignifAI."
+badge:
+ci:
+status: Beta
