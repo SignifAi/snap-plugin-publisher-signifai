@@ -1,5 +1,6 @@
 # snap-plugin-publisher-signifai
 Publishes snap metrics/events to SignifAI metrics service.
+
 SignifAI is a machine intelligence platform that helps TechOps teams get to answers faster by learning from their expertise, not generic algorithims. SignifAI helps TechOps deliver more uptime by intelligently prioritizing alerts, quickly identifying the root cause of an issue and correlating all the relevant log, events and metric data associated with the issue.
 
 
