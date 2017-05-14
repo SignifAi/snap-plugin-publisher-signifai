@@ -134,7 +134,7 @@ Open an issue and we will respond.
 The most immediately helpful way you can benefit this plug-in is by cloning the repository, adding some further examples and submitting a pull request.
 
 ## License
-Released under under the Apache 2.0 [License](LICENSE).
+Released under the Apache 2.0 [License](LICENSE).
 
 ## Acknowledgements
 * Author: [@SignifAi](https://github.com/SignifAi/)
