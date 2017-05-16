@@ -1,4 +1,6 @@
-[![CircleCI](https://circleci.com/gh/SignifAi/snap-plugin-publisher-signifai.svg?style=svg)](https://circleci.com/gh/SignifAi/snap-plugin-publisher-signifai)
+[![CircleCI](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg)](https://circleci.com/gh/SignifAi/snap-plugin-publisher-signifai)
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/SignifAi/snap-plugin-publisher-signifai/blob/master/LICENSE)
+
 
 # snap-plugin-publisher-signifai
 Publishes snap metrics/events to SignifAI metrics service.
@@ -73,11 +75,11 @@ Loaded Time: Sat, 18 Mar 2017 13:28:45 PDT
 You need to create or update a task file to use the signafai publisher
 plugin. We have provided an example, __tasks/signifai.yaml_ shown below. In
 our example, we utilize the psutil collector so we have some data to
-work with. There are three (3) configuration settings you can use.
+work with. There is only a single required configuration parameter:
 
 Setting|Description|Required?|
 |-------|-----------|---------|
-|token|The Signafai [JWT token](https://docs.signifai.io).|Yes|
+|token|The Signafai [JWT token](https://docs.signifai.io/docs/jwt-authentication).|Yes|
 
 
 ```
@@ -121,7 +123,7 @@ Task-72869b36-def6-47c4-9db2-822f93bb9d1f    Running   ...
 
 ## Documentation
 
-docs.signifai.io
+https://docs.signifai.io
 
 ### Roadmap
 
