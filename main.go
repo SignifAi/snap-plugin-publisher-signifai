@@ -15,8 +15,9 @@ limitations under the License.
 package main
 
 import (
-	"github.com/SignifAi/snap-plugin-publisher-signifai/signifai"
-	"github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
+	"github.com/signifai/snap-plugin-publisher-signifai/signifai"
+	"github.com/signifai/snap-plugin-lib-go/v1/plugin"
+        "google.golang.org/grpc"
 )
 
 const (
@@ -25,5 +26,5 @@ const (
 )
 
 func main() {
-	plugin.StartPublisher(signifai.New(), pluginName, pluginVersion)
+	plugin.StartPublisher(signifai.New(), pluginName, pluginVersion, plugin.GRPCServerOptions(grpc.MaxMsgSize(20 * 1024 * 1024)))
 }

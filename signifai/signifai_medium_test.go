@@ -16,7 +16,7 @@ package signifai
 
 import (
 	"encoding/json"
-	plugin "github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
+	plugin "github.com/signifai/snap-plugin-lib-go/v1/plugin"
 	"gopkg.in/jarcoal/httpmock.v1"
 	"io/ioutil"
 	"net/http"
