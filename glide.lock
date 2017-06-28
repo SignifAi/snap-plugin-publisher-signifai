@@ -1,19 +1,24 @@
-hash: 13fa79dc23c548d279c1bbb94762b077ed09ca31c9c5e65eade4fa678e42d3c5
-updated: 2017-03-28T17:53:23.96927358-07:00
+hash: 72d035643885a4793c6e11c0f43b4ac1773ff82375da0eddc1996a7e70eee065
+updated: 2017-06-27T20:46:06.098682699-04:00
 imports:
 - name: github.com/golang/protobuf
   version: 888eb0692c857ec880338addf316bd662d5e630e
   subpackages:
   - proto
 - name: github.com/intelsdi-x/snap
-  version: c98bf6658761dc330431c118dee1a069deb90bab
+  version: 65090cf383c1f054ed94f9e2d928b2ba4e2ef029
 - name: github.com/intelsdi-x/snap-plugin-lib-go
-  version: 8ae21e8f72cb1740171073d496a6b7f2cec5ca73
+  version: a416212294c7229bde44ab278c1d63a6bb9bfadd
+  repo: git@github.com:SignifAi/snap-plugin-lib-go
   subpackages:
   - v1/plugin
   - v1/plugin/rpc
 - name: github.com/julienschmidt/httprouter
   version: 6f3f3919c8781ce5c0509c83fffc887a7830c938
+- name: github.com/Sirupsen/logrus
+  version: ba1b36c82c5e05c4f912a88eab0dcd91a171688f
+- name: github.com/urfave/cli
+  version: b892ba3809cd07fcf2b064e166b0c2e16e0147bd
 - name: golang.org/x/net
   version: 154d9f9ea81208afed560f4cf27b4860c8ed1904
   subpackages:
@@ -23,6 +28,10 @@ imports:
   - internal/timeseries
   - lex/httplex
   - trace
+- name: golang.org/x/sys
+  version: 9ccfe848b9db8435a24c424abbc07a921adf1df5
+  subpackages:
+  - unix
 - name: google.golang.org/grpc
   version: 0032a855ba5c8a3c8e0d71c2deef354b70af1584
   subpackages:
@@ -35,5 +44,5 @@ imports:
   - peer
   - transport
 - name: gopkg.in/jarcoal/httpmock.v1
-  version: abbf1543e32e3d8a74ab639e37d9b097178a6924
+  version: cf52904a3cf0f78f199ecade6a6df8e245d5b25a
 testImports: []
