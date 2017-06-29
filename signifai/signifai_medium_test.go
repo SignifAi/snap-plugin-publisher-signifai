@@ -128,10 +128,12 @@ func TestNoMetrics(t *testing.T) {
 
 	httpmock.RegisterResponder("POST", updateSend+"/metrics",
 		func(req *http.Request) (*http.Response, error) {
+			t.Fatal("I should not have received anything!")
 			return nil, fmt.Errorf("I should not have received anything!")
 		},
 	)
 
+	p := Publisher{}
 	metrics := []plugin.Metric{}
 	err := p.Publish(metrics, validConfig())
 	if err != nil {
@@ -178,7 +180,7 @@ func TestOverTwentyMetrics(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if cnt != 5 {
+	if cnt != 4 {
 		t.Fatalf("server should have been sent two requests instead it sent %v", cnt)
 	}
 
