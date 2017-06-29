@@ -16,6 +16,7 @@ package signifai
 
 import (
 	"encoding/json"
+	"fmt"
 	plugin "github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
 	"gopkg.in/jarcoal/httpmock.v1"
 	"io/ioutil"
@@ -118,6 +119,23 @@ func TestSignifAiPublisher(t *testing.T) {
 	err := p.Publish(metrics, validConfig())
 	if err != nil {
 		t.Fatal(err)
+	}
+}
+
+func TestNoMetrics(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("POST", updateSend+"/metrics",
+		func(req *http.Request) (*http.Response, error) {
+			return nil, fmt.Errorf("I should not have received anything!")
+		},
+	)
+
+	metrics := []plugin.Metric{}
+	err := p.Publish(metrics, validConfig())
+	if err != nil {
+		t.Fatal("There should have been no error POSTing an empty list")
 	}
 }
 

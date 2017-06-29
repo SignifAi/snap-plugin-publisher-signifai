@@ -33,6 +33,11 @@ var MissingAuth = errors.New("Your Configuration is Missing a token fields")
 var updateSend = "https://collectors.signifai.io/v1"
 
 func (p Publisher) postit(list []interface{}) error {
+	if list == nil || len(list) == 0 {
+		// Nothing to publish? Don't publish, it's a success
+		return nil
+	}
+
 	postList := make(map[string][]interface{})
 	postList["events"] = list
 	jbytes, err := json.Marshal(postList)
