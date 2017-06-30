@@ -141,6 +141,56 @@ func TestNoMetrics(t *testing.T) {
 	}
 }
 
+func TestTimeoutFails(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+	alwaysFail := false
+	attempts := 0
+
+	httpmock.RegisterResponder("POST", updateSend+"/metrics",
+		func (req *http.Request) (*http.Response, error) {
+			if attempts < 6 || alwaysFail {
+				time.Sleep(1500 * time.Millisecond)
+			}
+			attempts++
+			resp, err := httpmock.NewJsonResponse(200, "ok")
+			return resp, err
+		},
+	)
+
+	p := Publisher{}
+
+	metrics := []plugin.Metric{
+		plugin.Metric{
+			Namespace: plugin.NewNamespace("x", "y", "z"),
+			Config:    map[string]interface{}{"pw": "123aB"},
+			Data:      3,
+			Tags:      map[string]string{"hello": "world"},
+			Unit:      "int",
+			Timestamp: time.Now(),
+		},
+		plugin.Metric{
+			Namespace: plugin.NewNamespace("bar").AddDynamicElement("domain_name", "Domain Name"),
+			Config:    map[string]interface{}{"pw": "123aB"},
+			Data:      3,
+			Tags:      map[string]string{"hello": "world"},
+			Unit:      "int",
+			Timestamp: time.Now(),
+		},
+	}
+
+	err := p.Publish(metrics, validConfig())
+	if err != nil {
+		t.Fatal("The last retry should have worked")
+	}
+
+	alwaysFail = true
+	err = p.Publish(metrics, validConfig())
+	if err == nil {
+		t.Fatal("Retries should have expired and caused an error")
+	}
+}
+
 func TestOverTwentyMetrics(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()

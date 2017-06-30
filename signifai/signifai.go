@@ -24,6 +24,7 @@ import (
 	"net/http"
 
 	"strings"
+	"time"
 )
 
 var MissingHostServiceApplication = errors.New("Your Configuration is Missing a Host, Service, or Application Field")
@@ -49,11 +50,24 @@ func (p Publisher) postit(list []interface{}) error {
 	req.Header.Set("Authorization", "Bearer "+p.token)
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	client := &http.Client{Timeout: 1 * time.Second}
+	var resp *http.Response
+	for attempts := 0; attempts < 8; attempts++ {
+		resp, err = client.Do(req)
+		if err != nil {
+			// XXX: There _has_ to be a better way to check timeout in Go
+			if !strings.Contains(err.Error(), "Client.Timeout exceeded") {
+				return err
+			}
+		} else {
+			break
+		}
+	}
+
 	if err != nil {
 		return err
 	}
+
 	defer resp.Body.Close()
 
 	return nil
@@ -182,21 +196,24 @@ func (p *Publisher) Publish(mts []plugin.Metric, cfg plugin.Config) error {
 		x := 0
 		for i := 0; i < loops; i++ {
 			if i+1 == loops {
-				p.addMetrics(mts[x : total-1])
+				err = p.addMetrics(mts[x : total-1])
 			} else {
-				p.addMetrics(mts[x : x+batch])
+				err = p.addMetrics(mts[x : x+batch])
+			}
+			if err != nil {
+				return err
 			}
 			x += batch
 		}
 
 	} else {
-		p.addMetrics(mts)
+		return p.addMetrics(mts)
 	}
 
 	return nil
 }
 
-func (p Publisher) addMetrics(mts []plugin.Metric) {
+func (p Publisher) addMetrics(mts []plugin.Metric) (error) {
 	var list []interface{}
 
 	for _, m := range mts {
@@ -243,5 +260,8 @@ func (p Publisher) addMetrics(mts []plugin.Metric) {
 	err := p.postit(list)
 	if err != nil {
 		log.Println(err)
+		return err
 	}
+
+	return nil
 }
