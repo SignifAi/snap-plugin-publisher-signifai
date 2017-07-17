@@ -73,7 +73,16 @@ func TestSignifAiPublisher(t *testing.T) {
 				t.Fatal("name is bad %v", metrics[0].Name)
 			}
 
-			val, ok := metrics[1].Attributes["domain_name"]
+			val, ok := metrics[1].Attributes["agent_version"]
+			if !ok {
+				t.Fatal("can't find attributes key %v", metrics[1])
+			} else {
+				if val != "1.0.4" {
+					t.Fatal("version %v incorrect", val)
+				}
+			}
+
+			val, ok = metrics[1].Attributes["domain_name"]
 			if !ok {
 				t.Fatal("can't find attributes key %v", metrics[1])
 			}

@@ -33,6 +33,8 @@ var MissingAuth = errors.New("Your Configuration is Missing a token fields")
 
 var updateSend = "https://collectors.signifai.io/v1"
 
+const SIGNIFAI_AGENT_VERSION = "1.0.4"
+
 func (p Publisher) postit(list []interface{}) error {
 	if list == nil || len(list) == 0 {
 		// Nothing to publish? Don't publish, it's a success
@@ -220,6 +222,7 @@ func (p Publisher) addMetrics(mts []plugin.Metric) (error) {
 
 		var statics []string
 		var attributes = make(map[string]interface{})
+                attributes["agent_version"] = SIGNIFAI_AGENT_VERSION
 		for _, element := range m.Namespace {
 			if element.IsDynamic() {
 				attributes[element.Name] = element.Value
