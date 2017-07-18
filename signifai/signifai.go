@@ -231,6 +231,10 @@ func (p Publisher) addMetrics(mts []plugin.Metric) (error) {
 			}
 		}
 
+		for tag, value := range m.Tags {
+			attributes["tag/" + tag] = value
+		}
+
 		switch p.api {
 		case "metrics":
 			o := Metric{

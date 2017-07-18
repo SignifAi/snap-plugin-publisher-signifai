@@ -96,6 +96,16 @@ func TestSignifAiPublisher(t *testing.T) {
 				t.Fatalf("key is wrong %v", estr)
 			}
 
+			metric_attr_value, exists := metrics[0].Attributes["tag/hello"]
+			if !exists || metric_attr_value != "world" {
+				t.Fatalf("Tags not being added to attributes")
+			}
+
+			metric_attr_value, exists = metrics[1].Attributes["tag/hello"]
+			if !exists || metric_attr_value != "world" {
+				t.Fatalf("Tags not being added to attributes")
+			}
+
 			resp, err := httpmock.NewJsonResponse(200, "ok")
 			if err != nil {
 				return httpmock.NewStringResponse(500, ""), nil
