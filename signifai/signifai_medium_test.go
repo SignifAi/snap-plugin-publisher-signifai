@@ -77,7 +77,7 @@ func TestSignifAiPublisher(t *testing.T) {
 			if !ok {
 				t.Fatal("can't find attributes key %v", metrics[1])
 			} else {
-				if val != "1.0.4" {
+				if val != "1.0.5" {
 					t.Fatal("version %v incorrect", val)
 				}
 			}
