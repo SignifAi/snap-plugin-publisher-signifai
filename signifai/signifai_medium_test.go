@@ -77,7 +77,7 @@ func TestSignifAiPublisher(t *testing.T) {
 			if !ok {
 				t.Fatal("can't find attributes key %v", metrics[1])
 			} else {
-				if val != "1.0.5" {
+				if val != "1.0.6" {
 					t.Fatal("version %v incorrect", val)
 				}
 			}
@@ -215,11 +215,25 @@ func TestOverTwentyMetrics(t *testing.T) {
 	defer httpmock.DeactivateAndReset()
 
 	cnt := 0
+	metric_cnt := 0
 
 	httpmock.RegisterResponder("POST", updateSend+"/metrics",
 		func(req *http.Request) (*http.Response, error) {
 
+			body, err := ioutil.ReadAll(req.Body)
+			if err != nil {
+				t.Fatal(err)
+			}
+			metricsSubmitted := map[string][]Metric{}
+
+			err = json.Unmarshal(body, &metricsSubmitted)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			metrics := metricsSubmitted["events"]
 			cnt += 1
+			metric_cnt += len(metrics)
 
 			resp, err := httpmock.NewJsonResponse(200, "ok")
 			if err != nil {
@@ -249,8 +263,12 @@ func TestOverTwentyMetrics(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if cnt != 4 {
-		t.Fatalf("server should have been sent two requests instead it sent %v", cnt)
+	if cnt != 5 {
+		t.Fatalf("server should have been sent five requests instead it sent %v", cnt)
+	}
+
+	if metric_cnt <= 20 {
+		t.Fatalf("server did not receive more than 20 metrics -- only got %v", metric_cnt)
 	}
 
 }
