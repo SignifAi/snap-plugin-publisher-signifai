@@ -33,7 +33,7 @@ var MissingAuth = errors.New("Your Configuration is Missing a token fields")
 
 var updateSend = "https://collectors.signifai.io/v1"
 
-const SIGNIFAI_AGENT_VERSION = "1.0.6"
+const SIGNIFAI_AGENT_VERSION = "1.0.7"
 
 func (p Publisher) postit(list []interface{}) error {
 	if list == nil || len(list) == 0 {
