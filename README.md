@@ -100,9 +100,10 @@ Setting|Description|Required?|
         /intel/psutil/vm/free: {}
         /intel/psutil/vm/used: {}
       publish:
-        - plugin_name: "signafai"
+        - plugin_name: "signifai-publisher"
           config:
             token: "1234ABCD"
+            api: metrics
 ```
 
 Once the task file has been created, you can create and watch the task.
