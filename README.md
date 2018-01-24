@@ -104,6 +104,7 @@ Setting|Description|Required?|
           config:
             token: "1234ABCD"
             api: metrics
+            application: Signifai
 ```
 
 Once the task file has been created, you can create and watch the task.
